@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Modern Elegant Webpage</title>
+  <meta name="description" content="A modern, elegant, and fully responsive HTML page with CSS and JavaScript. Features dark mode, semantic structure, accessibility, and best practices.">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Font Awesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <style>
+    :root {
+      --color-bg: #f7f7f9;
+      --color-bg-dark: #191a23;
+      --color-primary: #4e9ffd;
+      --color-accent: #ffb347;
+      --color-text: #222;
+      --color-text-dark: #ececec;
+      --color-shadow: 0 8px 32px 0 rgba(60,60,60,0.07);
+      --border-radius: 1.1rem;
+      --transition: .25s cubic-bezier(.4,0,.2,1);
+      --max-width: 1100px;
+      --font-family: 'Inter', Arial, sans-serif;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: var(--font-family);
+      margin: 0;
+      padding: 0;
+      background: var(--color-bg);
+      color: var(--color-text);
+      transition: background var(--transition), color var(--transition);
+      min-height: 100vh;
+    }
+    .dark-mode {
+      background: var(--color-bg-dark);
+      color: var(--color-text-dark);
+    }
+    /* Header & Nav */
+    header {
+      background: #fff;
+      box-shadow: var(--color-shadow);
+      position: sticky;
+      top: 0; z-index: 100;
+      transition: background var(--transition), box-shadow var(--transition);
+    }
+    .dark-mode header {
+      background: #222;
+      box-shadow: 0 2px 12px 0 rgba(10,10,10,0.25);
+    }
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 4.5rem;
+    }
+    .site-title {
+      font-size: 1.6rem;
+      font-weight: 600;
+      letter-spacing: .02em;
+      color: var(--color-primary);
+      text-decoration: none;
+    }
+    nav ul {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      align-items: center;
+    }
+    nav a {
+      color: inherit;
+      font-weight: 500;
+      text-decoration: none;
+      position: relative;
+      padding: .4rem 0;
+      transition: color var(--transition);
+    }
+    nav a::after {
+      content: "";
+      display: block;
+      width: 0;
+      height: 2px;
+      background: var(--color-primary);
+      transition: width var(--transition);
+      position: absolute;
+      left: 0;
+      bottom: 0;
+    }
+    nav a:focus-visible, nav a:hover {
+      color: var(--color-primary);
+      outline: none;
+    }
+    nav a:hover::after, nav a:focus-visible::after {
+      width: 100%;
+    }
+    /* Hamburger */
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.9rem;
+      color: var(--color-primary);
+      cursor: pointer;
+      transition: color var(--transition);
+    }
+    /* Main Hero Section */
+    .hero {
+      padding: 5rem 0 3.5rem 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 2rem;
+      background: linear-gradient(120deg, #e7efff 0%, #f7f7f9 80%);
+      border-radius: 0 0 var(--border-radius) var(--border-radius);
+    }
+    .dark-mode .hero {
+      background: linear-gradient(120deg, #20314a 0%, #191a23 80%);
+    }
+    .hero-title {
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      margin: 0 0 .7rem 0;
+      line-height: 1.08;
+    }
+    .hero-desc {
+      font-size: 1.25rem;
+      color: #444;
+      margin-bottom: 2.5rem;
+      line-height: 1.7;
+    }
+    .dark-mode .hero-desc { color: #ddd; }
+    .hero-actions {
+      display: flex;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .btn {
+      font-size: 1.06rem;
+      font-weight: 600;
+      padding: .78em 2.2em;
+      border: none;
+      border-radius: 2em;
+      background: var(--color-primary);
+      color: #fff;
+      cursor: pointer;
+      box-shadow: 0 2px 12px 0 rgba(78,159,253,0.10);
+      transition: background var(--transition), transform .14s;
+      display: flex;
+      align-items: center;
+      gap: .65em;
+      text-decoration: none;
+    }
+    .btn:hover, .btn:focus-visible {
+      background: #2361e6;
+      transform: translateY(-2px) scale(1.03);
+      outline: none;
+    }
+    .btn.secondary {
+      background: var(--color-accent);
+      color: #191a23;
+    }
+    .btn.secondary:hover, .btn.secondary:focus-visible {
+      background: #ff9800;
+    }
+    /* Section Styling */
+    section {
+      padding: 4rem 0 3.5rem 0;
+      background: none;
+    }
+    section .section-title {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 1.3rem;
+      color: var(--color-primary);
+      text-align: center;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 2.2rem;
+      margin-top: 2.7rem;
+    }
+    .feature-card {
+      background: #fff;
+      border-radius: var(--border-radius);
+      box-shadow: var(--color-shadow);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      transition: transform .18s, box-shadow .18s;
+      cursor: pointer;
+      border: none;
+      outline: none;
+    }
+    .dark-mode .feature-card {
+      background: #1d1e25;
+      color: #eee;
+    }
+    .feature-card:hover, .feature-card:focus-visible {
+      transform: translateY(-7px) scale(1.04);
+      box-shadow: 0 8px 40px 0 rgba(78,159,253,0.14);
+      outline: 2px solid var(--color-primary);
+    }
+    .feature-card i {
+      font-size: 2.1rem;
+      margin-bottom: .7rem;
+      color: var(--color-primary);
+    }
+    .feature-title {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: .55rem;
+    }
+    .feature-desc {
+      color: #666;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+    .dark-mode .feature-desc { color: #bbb; }
+    /* About/Modal */
+    .about {
+      text-align: center;
+      font-size: 1.09rem;
+      color: #555;
+      margin-top: 2rem;
+    }
+    .dark-mode .about { color: #aaa; }
+    /* Modal */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      background: rgba(30,36,62,0.16);
+      backdrop-filter: blur(1.5px);
+      justify-content: center;
+      align-items: center;
+      transition: opacity .23s;
+    }
+    .modal-backdrop.active {
+      display: flex;
+      opacity: 1;
+    }
+    .modal {
+      background: #fff;
+      color: #222;
+      border-radius: var(--border-radius);
+      box-shadow: 0 6px 32px 0 rgba(0,0,0,0.14);
+      padding: 2.5rem 2rem 1.7rem 2rem;
+      min-width: 300px;
+      max-width: 98vw;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+      transition: box-shadow .19s;
+    }
+    .dark-mode .modal {
+      background: #232333;
+      color: #ececec;
+    }
+    .modal .close-btn {
+      position: absolute;
+      right: 1.2rem;
+      top: 1rem;
+      background: none;
+      border: none;
+      font-size: 1.7rem;
+      color: var(--color-primary);
+      cursor: pointer;
+      transition: color var(--transition);
+    }
+    .modal .close-btn:focus-visible { outline: 2px solid var(--color-primary);}
+    /* Footer */
+    footer {
+      background: #fff;
+      color: #777;
+      text-align: center;
+      padding: 2rem 1rem 1.1rem 1rem;
+      font-size: .97rem;
+      border-top-left-radius: var(--border-radius);
+      border-top-right-radius: var(--border-radius);
+      box-shadow: 0 -2px 14px 0 rgba(60,60,60,0.07);
+      margin-top: 2.5rem;
+    }
+    .dark-mode footer {
+      background: #222;
+      color: #bbb;
+      box-shadow: 0 -2px 14px 0 rgba(20,20,20,0.19);
+    }
+    /* Utilities & Media Queries */
+    .sr-only {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden;
+      clip: rect(0,0,0,0); border: 0;
+    }
+    @media (max-width: 900px) {
+      .hero { padding: 3.5rem 0 2.5rem 0;}
+      section { padding: 3rem 0 2.5rem 0; }
+    }
+    @media (max-width: 700px) {
+      nav ul {
+        flex-direction: column;
+        gap: 1.5rem;
+        background: #fff;
+        position: absolute;
+        left: 0; right: 0; top: 100%;
+        box-shadow: 0 10px 30px 0 rgba(30,36,62,0.08);
+        border-bottom-left-radius: var(--border-radius);
+        border-bottom-right-radius: var(--border-radius);
+        padding: 2rem 0 2rem 0;
+        display: none;
+      }
+      .dark-mode nav ul {
+        background: #232333;
+      }
+      nav ul.open {
+        display: flex;
+      }
+      .nav-toggle {
+        display: block;
+      }
+    }
+    @media (max-width: 420px) {
+      .container { padding: 0 .7rem; }
+      .modal { padding: 1.2rem .5rem 1rem .5rem; }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main" class="sr-only" tabindex="0">Skip to main content</a>
+  <header>
+    <div class="container navbar">
+      <a href="#" class="site-title">ModernSite</a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-controls="main-nav" aria-expanded="false">
+        <i class="fas fa-bars"></i>
+      </button>
+      <nav>
+        <ul id="main-nav">
+          <li><a href="#features">Features</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#" id="open-modal-btn">Contact</a></li>
+          <li>
+            <button id="dark-mode-toggle" class="btn secondary" aria-pressed="false" style="font-size:1.05em;padding:.4em 1.3em;">
+              <i class="fas fa-moon"></i>
+              <span class="sr-only">Toggle dark mode</span>
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <h1 class="hero-title" id="hero-title">A Modern, Elegant Webpage</h1>
+      <div class="hero-desc">
+        Discover a single-page HTML template with all the essentials:<br>
+        semantic structure, responsive design, dark mode, accessibility, and smooth micro-interactions.<br>
+        Easily adaptable for portfolios, landing pages, or startups.
+      </div>
+      <div class="hero-actions">
+        <a href="#features" class="btn"><i class="fas fa-arrow-down"></i> See Features</a>
+        <a href="#" id="open-modal-btn2" class="btn secondary"><i class="fas fa-envelope"></i> Contact Us</a>
+      </div>
+    </section>
+    <section id="features" aria-labelledby="features-title">
+      <h2 class="section-title" id="features-title">Features</h2>
+      <div class="features-grid">
+        <button class="feature-card" tabindex="0">
+          <i class="fas fa-mobile-alt"></i>
+          <div class="feature-title">Fully Responsive</div>
+          <div class="feature-desc">Adapts perfectly to mobile, tablet, and desktop using CSS Grid and Flexbox layouts.</div>
+        </button>
+        <button class="feature-card" tabindex="0">
+          <i class="fas fa-moon"></i>
+          <div class="feature-title">Dark Mode</div>
+          <div class="feature-desc">Toggle light and dark themes, with smooth transitions and modern aesthetics.</div>
+        </button>
+        <button class="feature-card" tabindex="0">
+          <i class="fas fa-eye"></i>
+          <div class="feature-title">Accessible</div>
+          <div class="feature-desc">Semantic HTML, keyboard navigation, and visible focus make it usable for everyone.</div>
+        </button>
+        <button class="feature-card" tabindex="0">
+          <i class="fas fa-magic"></i>
+          <div class="feature-title">Elegant Design</div>
+          <div class="feature-desc">Balanced color palette, spacing, subtle shadows, and interactive micro-animations.</div>
+        </button>
+        <button class="feature-card" tabindex="0">
+          <i class="fas fa-rocket"></i>
+          <div class="feature-title">Fast & Optimized</div>
+          <div class="feature-desc">Loads quickly with minified assets, lazy loading, and performance best practices.</div>
+        </button>
+        <button class="feature-card" tabindex="0">
+          <i class="fas fa-code"></i>
+          <div class="feature-title">Ready to Customize</div>
+          <div class="feature-desc">Easy to adapt for portfolios, startups, or any modern web project.</div>
+        </button>
+      </div>
+    </section>
+    <section id="about" aria-labelledby="about-title">
+      <h2 class="section-title" id="about-title">About This Template</h2>
+      <div class="about">
+        This single HTML file demonstrates all the essentials for a modern web presence.<br>
+        Built with semantic HTML5, accessible markup, mobile-first CSS, and interactive JavaScript.<br>
+        <br>
+        <strong>Use, adapt, or extend for your own projects!</strong>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal for Contact -->
+  <div class="modal-backdrop" id="modal-backdrop" aria-modal="true" role="dialog" aria-labelledby="modal-title" tabindex="-1">
+    <div class="modal" role="document">
+      <button class="close-btn" aria-label="Close modal" id="close-modal-btn"><i class="fas fa-times"></i></button>
+      <h3 id="modal-title" style="margin-top:0;font-size:1.33em;">Contact Us</h3>
+      <form id="contact-form" autocomplete="off">
+        <label for="name">Name</label><br>
+        <input id="name" name="name" type="text" required style="width:95%;padding:.5em;margin:.4em 0 1em 0;border-radius:6px;border:1px solid #ddd;"><br>
+        <label for="email">Email</label><br>
+        <input id="email" name="email" type="email" required style="width:95%;padding:.5em;margin:.4em 0 1em 0;border-radius:6px;border:1px solid #ddd;"><br>
+        <label for="msg">Message</label><br>
+        <textarea id="msg" name="msg" rows="3" required style="width:95%;padding:.5em;border-radius:6px;border:1px solid #ddd;margin-bottom:1.2em;"></textarea><br>
+        <button type="submit" class="btn"><i class="fas fa-paper-plane"></i> Send</button>
+        <div id="form-status" aria-live="polite" style="margin-top:1em;color:var(--color-primary);"></div>
+      </form>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 ModernSite. Crafted with <i class="fas fa-heart" style="color:#e25555;" aria-hidden="true"></i> | <a href="#top" style="color:inherit;text-decoration:underline;">Back to Top</a>
+  </footer>
+  <script>
+    // Dark Mode
+    const darkModeBtn = document.getElementById('dark-mode-toggle');
+    function setDarkMode(on) {
+      document.body.classList.toggle('dark-mode', on);
+      darkModeBtn.setAttribute('aria-pressed', on ? 'true' : 'false');
+      localStorage.setItem('modernsite-dark', on ? '1' : '0');
+    }
+    function getPrefDark() {
+      if(localStorage.getItem('modernsite-dark')) {
+        return localStorage.getItem('modernsite-dark') === '1';
+      }
+      return window.matchMedia('(prefers-color-scheme: dark)').matches;
+    }
+    setDarkMode(getPrefDark());
+    darkModeBtn.onclick = () => setDarkMode(!document.body.classList.contains('dark-mode'));
+
+    // Hamburger Menu
+    const navToggle = document.querySelector('.nav-toggle');
+    const mainNav = document.getElementById('main-nav');
+    navToggle.onclick = function() {
+      mainNav.classList.toggle('open');
+      const expanded = mainNav.classList.contains('open');
+      navToggle.setAttribute('aria-expanded', expanded);
+    };
+    // Close nav on link click (mobile)
+    mainNav.querySelectorAll('a').forEach(link => {
+      link.onclick = () => { mainNav.classList.remove('open'); navToggle.setAttribute('aria-expanded','false'); };
+    });
+
+    // Modal Logic
+    function openModal() {
+      document.getElementById('modal-backdrop').classList.add('active');
+      document.getElementById('name').focus();
+    }
+    function closeModal() {
+      document.getElementById('modal-backdrop').classList.remove('active');
+    }
+    document.getElementById('open-modal-btn').onclick = (e) => { e.preventDefault(); openModal(); }
+    document.getElementById('open-modal-btn2').onclick = (e) => { e.preventDefault(); openModal(); }
+    document.getElementById('close-modal-btn').onclick = closeModal;
+    window.addEventListener('keydown', function(e) {
+      if(e.key === "Escape") closeModal();
+    });
+    document.getElementById('modal-backdrop').onclick = function(e) {
+      if(e.target === this) closeModal();
+    };
+
+    // Simple Form Handler (No backend - demo only)
+    document.getElementById('contact-form').onsubmit = function(e) {
+      e.preventDefault();
+      document.getElementById('form-status').textContent = "Thank you! We'll get back to you soon.";
+      this.reset();
+      setTimeout(closeModal, 1200);
+    };
+
+    // Accessibility: Trap focus in modal
+    document.getElementById('modal-backdrop').addEventListener('keydown', function(e){
+      if(!this.classList.contains('active')) return;
+      const focusables = this.querySelectorAll('input, textarea, button');
+      if(!focusables.length) return;
+      const first = focusables[0], last = focusables[focusables.length-1];
+      if(e.key === "Tab") {
+        if(e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if(!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    });
+  </script>
+</body>
+</html>
