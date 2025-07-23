@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML5 Test Page</title>
+  <meta name="description" content="A comprehensive HTML5 test page with sample elements.">
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f0f0f0; }
+    header, footer { background: #333; color: #fff; padding: 1em; text-align: center; }
+    main { background: #fff; margin: 2em auto; padding: 2em; max-width: 960px; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    nav ul { list-style: none; padding: 0; display: flex; gap: 2em; justify-content: center; }
+    nav a { color: #2196f3; text-decoration: none; }
+    table, th, td { border: 1px solid #888; border-collapse: collapse; padding: 0.5em; }
+    section { margin: 2em 0; }
+    form label { display: block; margin-top: 1em; }
+    .image-demo { max-width: 200px; }
+    .success { color: green; }
+    .error { color: red; }
+    .sr-only { position: absolute; left: -9999px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>HTML5 Test Page</h1>
+    <nav aria-label="Main Navigation">
+      <ul>
+        <li><a href="#intro">Introduction</a></li>
+        <li><a href="#elements">Elements</a></li>
+        <li><a href="#form">Form</a></li>
+        <li><a href="#table">Table</a></li>
+        <li><a href="#media">Media</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section id="intro">
+      <h2>Introduction</h2>
+      <p>This is a feature-rich HTML5 test page. Use it to test your browser's rendering of modern HTML/CSS/JavaScript, as well as accessibility and layout.</p>
+    </section>
+
+    <section id="elements">
+      <h2>Common Elements</h2>
+      <h3>Headings</h3>
+      <p>h1 to h6 used above and below:</p>
+      <h4>This is an h4</h4>
+      <h5>This is an h5</h5>
+      <h6>This is an h6</h6>
+      <ul>
+        <li>Unordered list item 1</li>
+        <li>Unordered list item 2</li>
+      </ul>
+      <ol>
+        <li>Ordered list item 1</li>
+        <li>Ordered list item 2</li>
+      </ol>
+      <blockquote cite="https://developer.mozilla.org/">
+        "HTML is the standard markup language for Web pages."
+      </blockquote>
+      <hr>
+      <strong>Strong</strong>, <em>Emphasis</em>, <code>Inline code</code><br>
+      <a href="https://www.example.com" target="_blank">External link</a>
+    </section>
+
+    <section id="form">
+      <h2>Form Example</h2>
+      <form id="testForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email">
+        <label>
+          <input type="checkbox" name="subscribe" value="yes">
+          Subscribe to newsletter
+        </label>
+        <label for="color">Favorite Color:</label>
+        <input type="color" id="color" name="color" value="#2196f3">
+        <button type="submit">Send</button>
+        <span id="formResult" aria-live="polite"></span>
+      </form>
+    </section>
+
+    <section id="table">
+      <h2>Table Example</h2>
+      <table>
+        <caption>User Data</caption>
+        <thead>
+          <tr><th>Name</th><th>Age</th><th>Email</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Alice</td><td>30</td><td>alice@example.com</td></tr>
+          <tr><td>Bob</td><td>25</td><td>bob@example.com</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="media">
+      <h2>Images &amp; Media</h2>
+      <figure>
+        <img src="https://via.placeholder.com/200" alt="Placeholder image" class="image-demo">
+        <figcaption>A sample placeholder image.</figcaption>
+      </figure>
+      <video controls width="320">
+        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <audio controls>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+    </section>
+  </main>
+  <footer>
+    <small>&copy; 2024 HTML5 Test Page. All rights reserved. <span class="sr-only">End of content.</span></small>
+  </footer>
+  <script>
+    const form = document.getElementById('testForm');
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      if (name) {
+        document.getElementById('formResult').textContent = `Thank you, ${name}!`;
+        document.getElementById('formResult').className = 'success';
+      } else {
+        document.getElementById('formResult').textContent = "Please enter your name.";
+        document.getElementById('formResult').className = 'error';
+      }
+    });
+  </script>
+</body>
+</html>
