@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surprise!</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #FF6B6B, #FFD93D, #6BCB77, #4D96FF);
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            animation: bgmove 10s ease-in-out infinite alternate;
+        }
+        @keyframes bgmove {
+            0% {background-position: 0 0;}
+            100% {background-position: 100% 100%;}
+        }
+        .container {
+            background: rgba(255,255,255,0.85);
+            padding: 2rem 3rem;
+            border-radius: 20px;
+            box-shadow: 0 6px 32px rgba(0,0,0,0.18);
+            text-align: center;
+        }
+        h1 {
+            font-size: 3rem;
+            color: #4D96FF;
+        }
+        p {
+            font-size: 1.4rem;
+            color: #333;
+        }
+        .emoji {
+            font-size: 4rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="emoji">🎉✨</div>
+        <h1>Surprise!</h1>
+        <p>This page was magically created just for you.<br>Have a wonderful day!</p>
+        <div class="emoji">🌈🦄</div>
+    </div>
+</body>
+</html>
